@@ -2,11 +2,34 @@
 title: Blog
 layout: 'base.njk'
 ---
-    <main>
-       
+
+{# why json doesnt work in new files???? #}
+
+
+
 <div class="section container">
 <h1 class="section-title">Recent articles</h1>
-<ul role="list" class="articles__list flow"><li>
+
+<ul role="list" class="articles__list flow"> 
+
+{%- for post in collections.post | reverse -%}
+<li>
+  <article class="smippet">
+    <img src="{{ post.data.image }}" alt="{{ post.data.imageAlt }}" class="snippet_image">
+    <h3 class="snippet_title"><a href="{{ post.url }}">{{ post.data.title }}</a></h3>
+    <p class="snippet_meta"> by {{ post.data.author }} on <span>{{ post.date | postDate}}</span></p>
+    <p class="snippet_body">{{ post.data.description }}</p>
+    <a href="{{ post.url }}" class="btn btn--primary">Continue Reading</a>
+  </article>
+</li>
+
+{%- endfor %}
+
+</ul>
+
+</div>
+
+{# <li>
          <article class="snippet">
   <img src="/assets/blog/carbon-2021-06-11t092807.024.png" alt="a man on his computer" class="snippet__image">
   <h3 class="snippet__title"><a href="/blog/another-article/">Another article!!</a></h3>
@@ -54,6 +77,7 @@ layout: 'base.njk'
   <p class="snippet__body">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis accusantium sit illo neque rem omnis quaerat, nam similique vitae delectus ad magni vel quo maxime, magnam placeat. Reprehenderit, distinctio aliquam?</p> 
   <a href="/blog/my-first-article/" class="btn btn--primary">Continue Reading</a>
 </article>
-        </li></ul>
-  </div>
-    </main>
+        </li> #}
+
+
+
